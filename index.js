@@ -5,6 +5,9 @@ import bodyParser from 'body-parser';
 import fs from 'fs';
 import fastCsv from 'fast-csv';
 import pkg from 'pg';
+import cors from "cors";
+app.use(cors({ origin: '*' }));
+
 
 const { Pool } = pkg;
 
@@ -123,7 +126,7 @@ const importCsvToDb = async (filePath, tableName, headers) => {
 };
 
 // File upload API
-app.post("https://backend-f08o.onrender.com/upload", upload.single("file"), async (req, res) => {
+app.post("/upload", upload.single("file"), async (req, res) => {
     if (!req.file) {
         return res.status(400).json({ message: "No file uploaded" });
     }
