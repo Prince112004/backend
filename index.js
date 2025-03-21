@@ -17,15 +17,18 @@ try {
     console.error('Error loading environment variables:', error);
 }
 
+// const pool = new Pool({
+//     user: "postgres",
+//     host: "localhost",
+//     database: "Gandhinagar",
+//     password: "Rahul$777",
+//     port: process.env.DBPORT
+//   });
+
 const pool = new Pool({
-    user: "postgres",
-    host: "localhost",
-    database: "Gandhinagar",
-    password: "Rahul$777",
-    port: process.env.DBPORT
+    connectionString: process.env.DATABASE_URL,
+    ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
   });
-
-
 const app = express();
 app.use(cors({ origin: '*' }));
 
