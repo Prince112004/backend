@@ -6,7 +6,7 @@ import fs from 'fs';
 import fastCsv from 'fast-csv';
 import pkg from 'pg';
 import cors from "cors";
-app.use(cors({ origin: '*' }));
+
 
 
 const { Pool } = pkg;
@@ -27,6 +27,7 @@ const pool = new Pool({
 
 
 const app = express();
+app.use(cors({ origin: '*' }));
 
 const PORT = process.env.PORT || 3000;
 
